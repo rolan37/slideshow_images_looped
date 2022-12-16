@@ -1,0 +1,37 @@
+# Please note: Use this code only in cases when you have a lot of images.
+# import required modules
+import glob
+import shutil
+import os
+import tkinter as tk
+from tkinter import *
+from PIL import Image
+from PIL import ImageTk
+
+dir_path = r'add_your_filepath_here'    #                  r'E:\account'
+
+# adjust window
+root=tk.Tk()
+root.geometry("5760x1080")
+count = 0
+
+#Counting the number of images
+for path in os.listdir(dir_path):
+    # check if current path is a file
+    if os.path.isfile(os.path.join(dir_path, path)):
+        count += 1
+
+
+# loading the images
+
+def loadImages():
+	for jpgfile in glob.iglob(os.path.join(dir_path, "*.jpg")):
+		ImageTk.PhotoImage(Image.open(jpgfile))
+
+l=Label()
+l.pack()
+loadImages()
+
+
+
+root.mainloop()
